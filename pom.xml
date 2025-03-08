@@ -15,7 +15,6 @@
         <module>hypesphere-product</module>
         <module>hypesphere-ware</module>
         <module>hypesphere-member</module>
+        <module>renren-fast</module>
     </modules>
-
-
 </project>

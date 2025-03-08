@@ -37,6 +37,5 @@ build/
 
 **/.mvn
 **/target/
-.idea
 **/.gitignore
 **/.gitattributes
