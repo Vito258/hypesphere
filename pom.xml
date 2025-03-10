@@ -9,6 +9,13 @@
     <description>聚合服务</description>
     <packaging>pom</packaging>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <modules>
         <module>hypesphere-order</module>
         <module>hypesphere-coupon</module>
@@ -16,5 +23,6 @@
         <module>hypesphere-ware</module>
         <module>hypesphere-member</module>
         <module>renren-fast</module>
+        <module>hypesphere-common</module>
     </modules>
 </project>

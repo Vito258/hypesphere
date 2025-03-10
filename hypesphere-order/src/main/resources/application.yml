@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: hypesphere-product
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.56.10:3306/hypesphere_oms?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
+#    init:
+#      schema-locations: classpath:db/schema-h2.sql
+#      data-locations: classpath:db/data-h2.sql
