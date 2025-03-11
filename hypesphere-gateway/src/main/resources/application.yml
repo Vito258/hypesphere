@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: hypesphere-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        enabled: true
+        username: nacos
+        password: nacos
+      config:
+        file-extension: yaml  # ?????????
+        server-addr: 127.0.0.1:8848
+        group: dev  # ????????
+        enabled: true
+        username: nacos
+        password: nacos
+        namespace: hypesphere-gateway
+  config:
+    import: "optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}"   # ?????Id
+logging:
+  level:
+    com.alibaba.nacos.client.config: DEBUG

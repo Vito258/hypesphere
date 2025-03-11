@@ -1,11 +1,88 @@
+# spring 相关配置
 spring:
   application:
-    name: hypesphere-product
+    name: hypesphere-coupon
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
     url: jdbc:mysql://192.168.56.10:3306/hypesphere_sms?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
-#    init:
-#      schema-locations: classpath:db/schema-h2.sql
-#      data-locations: classpath:db/data-h2.sql
+    sql:
+      init:
+        mode: always  # Spring Boot 3.x+ 使用此配置
+        schema-locations: classpath:db/schema-mysql.sql  # 建表SQL
+        data-locations: classpath:db/data-mysql.sql     # 初始数据SQL
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        enabled: true
+        username: nacos
+        password: nacos
+      config:
+        file-extension: yaml  # 明确指定文件扩展名
+        server-addr: 127.0.0.1:8848
+        group: dev  # 指定配置集的分组
+        enabled: true
+        username: nacos
+        password: nacos
+        namespace: hypesphere-coupon
+  config:
+    import: "optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}"   # 指定配置集Id
+
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+
+# 服务
+server:
+  port: 8081
+
+coupon:
+  user:
+    name: Elon
+    password: 123456
+
+
+## 配置中心,尝试引入多配置集
+#spring:
+#  application:
+#    name: hypesphere-coupon
+#  config:
+#    import: "optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}"
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#        username: nacos
+#        password: nacos
+#      config:
+#        server-addr: 127.0.0.1:8848
+#        username: nacos
+#        password: nacos
+#        namespace: hypesphere-coupon
+#        group: dev
+#        extension-configs:
+#          - data-id: datasource.yaml    # 数据ID（需包含文件扩展名）
+#            group: dev                  # 分组，默认DEFAULT_GROUP
+#            refresh: true               # 是否动态刷新（默认false）
+#          - data-id: mybatisplus.yaml
+#            group: dev
+#            refresh: true
+#          - data-id: other.yaml
+#            group: dev
+#            refresh: true
+#        file-extension: yaml
+#
+#logging:
+#  file:
+#    name: logs/app.log
+#  level:
+#    root: INFO
+#    org.springframework.cloud.nacos: DEBUG  # 开启Nacos客户端调试日志
+#    com.alibaba.nacos: DEBUG
+
+
