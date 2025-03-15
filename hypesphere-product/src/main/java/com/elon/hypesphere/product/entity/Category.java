@@ -1,12 +1,11 @@
 package com.elon.hypesphere.product.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -60,6 +59,7 @@ public class Category implements Serializable {
      */
     @TableField("show_status")
     @ApiModelProperty("是否显示[0-不显示，1显示]")
+    @TableLogic
     private Byte showStatus;
 
     /**
@@ -89,4 +89,10 @@ public class Category implements Serializable {
     @ApiModelProperty("商品数量")
     @TableField("product_count")
     private Integer productCount;
+
+    /**
+     * 子分类
+     */
+    @TableField(exist = false)
+    private List<Category> children;
 }

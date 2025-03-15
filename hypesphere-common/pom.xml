@@ -199,12 +199,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <!-- springcloud gateway -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
     </dependencies>
 
     <!--  配置管理  -->

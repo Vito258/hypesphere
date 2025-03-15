@@ -26,6 +26,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- springcloud gateway -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+            <version>4.1.6</version>
+        </dependency>
+
         <!-- 显式添加 Hibernate Validator -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>

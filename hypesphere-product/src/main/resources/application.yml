@@ -12,6 +12,23 @@ spring:
         mode: always  # Spring Boot 3.x+ 使用此配置
         schema-locations: classpath:db/schema-mysql.sql  # 建表SQL
         data-locations: classpath:db/data-mysql.sql     # 初始数据SQL
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        enabled: true
+        username: nacos
+        password: nacos
+      config:
+        file-extension: yaml  # 明确指定文件扩展名
+        server-addr: 127.0.0.1:8848
+        group: dev  # 指定配置集的分组
+        enabled: true
+        username: nacos
+        password: nacos
+        namespace: hypesphere-product
+  config:
+    import: "optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}"   # 指定配置集Id
 
 # mybatis-plus
 mybatis-plus:
@@ -19,6 +36,8 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+      logic-delete-value: 0     # 逻辑已删除值
+      logic-not-delete-value: 1 # 逻辑未删除值
 
 # 服务
 server:

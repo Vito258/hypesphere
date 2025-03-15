@@ -22,7 +22,6 @@
         <module>hypesphere-product</module>
         <module>hypesphere-ware</module>
         <module>hypesphere-member</module>
-        <module>renren-fast</module>
         <module>hypesphere-common</module>
         <module>hypesphere-gateway</module>
     </modules>
