@@ -1,7 +1,10 @@
 package com.elon.hypesphere.product.service;
 
+import com.elon.hypesphere.common.utils.PageUtils;
 import com.elon.hypesphere.product.entity.Brand;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +16,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IBrandService extends IService<Brand> {
 
+    // 分页查询
+    PageUtils queryPage(Map<String, Object> params);
+
+    // 更新品牌详情
+    void updateDetail(Brand brand);
 }

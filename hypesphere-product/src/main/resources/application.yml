@@ -7,11 +7,6 @@ spring:
     username: root
     password: root
     url: jdbc:mysql://192.168.56.10:3306/hypesphere_pms?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
-    sql:
-      init:
-        mode: always  # Spring Boot 3.x+ 使用此配置
-        schema-locations: classpath:db/schema-mysql.sql  # 建表SQL
-        data-locations: classpath:db/data-mysql.sql     # 初始数据SQL
   cloud:
     nacos:
       discovery:
@@ -42,3 +37,12 @@ mybatis-plus:
 # 服务
 server:
   port: 8084
+
+# 阿里云远程存储
+alibaba:
+  cloud:
+    access-key: ${OSS_ACCESS_KEY_ID}
+    secret-key: ${OSS_ACCESS_KEY_SECRET}
+    oss:
+      endpoint: oss-cn-qingdao.aliyuncs.com
+
