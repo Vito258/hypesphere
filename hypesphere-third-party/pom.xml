@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.elon.hypesphere</groupId>
+	<artifactId>hypesphere-third-party</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>hypesphere-third-party</name>
+	<description>hypesphere-third-party</description>
+
+	<!--   导入依赖 	-->
+	<dependencies>
+		<dependency>
+			<groupId>com.elon.hypesphere</groupId>
+			<artifactId>hypesphere-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.baomidou</groupId>
+					<artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+        <!-- 关于对象存储的相关依赖 -->
+		<!--  aliyun 新版   -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>aliyun-oss-spring-boot-starter</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<!--   Jaxb 相关依赖   -->
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<!-- no more than 2.3.3-->
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>4.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>4.0.5</version>
+			<scope>runtime</scope>
+		</dependency>
+
+        <!-- Oss 服务端签名所需依赖 -->
+		<dependency>
+			<groupId>com.aliyun</groupId>
+			<artifactId>credentials-java</artifactId>
+			<version>0.3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aliyun.kms</groupId>
+			<artifactId>kms-transfer-client</artifactId>
+			<version>0.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aliyun.oss</groupId>
+			<artifactId>aliyun-sdk-oss</artifactId>
+			<version>3.17.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aliyun</groupId>
+			<artifactId>sts20150401</artifactId>
+			<version>1.1.6</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>21</source>
+					<target>21</target>
+					<compilerArgs>--enable-preview</compilerArgs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

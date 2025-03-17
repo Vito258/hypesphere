@@ -20,10 +20,6 @@ import java.io.File;
 @SpringBootTest
 @RunWith(SpringRunner.class)  // JUnit 4 需要此注解
 public class HypesphereProductApplicationTests {
-
-    @Autowired
-    private OSSClient oss;
-
     @Test
     public void contextLoads() {
     }
@@ -123,17 +119,17 @@ public class HypesphereProductApplicationTests {
 //    }
 
     // 使用注入的OssCLient上传文件
-    @Test
-    public void uploadFileTestByOSSClient() throws Exception {
-        // Client 配置
-        String bucketName = "hypesphere";
-        String objectName = "exampledir/liming2.jpg";
-        String filePath = "E:\\MyData\\头像\\liming2.jpg";
-
-        // 创建PutObjectRequest对象。
-        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, objectName, new File(filePath));
-        // download file to local
-        oss.putObject(putObjectRequest);
-    }
+//    @Test
+//    public void uploadFileTestByOSSClient() throws Exception {
+//        // Client 配置
+//        String bucketName = "hypesphere";
+//        String objectName = "exampledir/liming2.jpg";
+//        String filePath = "E:\\MyData\\头像\\liming2.jpg";
+//
+//        // 创建PutObjectRequest对象。
+//        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, objectName, new File(filePath));
+//        // download file to local
+//        oss.putObject(putObjectRequest);
+//    }
 
 }

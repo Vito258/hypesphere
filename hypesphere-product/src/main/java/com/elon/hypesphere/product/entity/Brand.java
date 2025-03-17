@@ -4,12 +4,19 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.elon.hypesphere.common.validator.ListValue;
+import com.elon.hypesphere.common.validator.group.AddGroup;
+import com.elon.hypesphere.common.validator.group.UpdateGroup;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.URL;
+
 /**
  * <p>
  * 品牌
@@ -32,6 +39,8 @@ public class Brand implements Serializable {
      */
     @ApiModelProperty("品牌id")
     @TableId(value = "brand_id", type = IdType.AUTO)
+    @Null(message = "新增不能指定ID",groups = {AddGroup.class})
+    @NotNull(message = "修改必须指定ID", groups = {UpdateGroup.class})
     private Long brandId;
 
     /**
@@ -39,6 +48,7 @@ public class Brand implements Serializable {
      */
     @TableField("name")
     @ApiModelProperty("品牌名")
+    @NotBlank(message = "品牌名不能为空",groups = {AddGroup.class, UpdateGroup.class})
     private String name;
 
     /**
@@ -46,6 +56,8 @@ public class Brand implements Serializable {
      */
     @TableField("logo")
     @ApiModelProperty("品牌logo地址")
+    @NotNull(message = "logo地址不能为空",groups = {AddGroup.class})
+    @URL(message = "logo地址必须是一个合法的url" ,groups = {AddGroup.class, UpdateGroup.class})
     private String logo;
 
     /**
@@ -60,6 +72,7 @@ public class Brand implements Serializable {
      */
     @TableField("show_status")
     @ApiModelProperty("显示状态[0-不显示；1-显示]")
+    @ListValue(vals = {0,1},message = "显示状态必须是0或1",groups = {AddGroup.class, UpdateGroup.class})
     private Byte showStatus;
 
     /**
@@ -67,6 +80,8 @@ public class Brand implements Serializable {
      */
     @ApiModelProperty("检索首字母")
     @TableField("first_letter")
+    @NotNull(message = "首字母不能为空",groups = {AddGroup.class})
+    @Pattern(regexp = "^[a-zA-Z]$",message = "首字母必须在a~z，或者A~Z之间",groups = {AddGroup.class, UpdateGroup.class})
     private String firstLetter;
 
     /**
@@ -74,5 +89,7 @@ public class Brand implements Serializable {
      */
     @TableField("sort")
     @ApiModelProperty("排序")
+    @NotNull(message = "排序不能为空",groups = {AddGroup.class})
+    @Min(value = 0,message = "排序必须大于等于0",groups = {AddGroup.class, UpdateGroup.class})
     private Integer sort;
 }

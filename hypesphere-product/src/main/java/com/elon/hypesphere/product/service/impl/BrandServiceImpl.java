@@ -9,6 +9,7 @@ import com.elon.hypesphere.product.mapper.BrandMapper;
 import com.elon.hypesphere.product.service.IBrandService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -23,6 +24,9 @@ import java.util.Map;
  */
 @Service
 public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements IBrandService {
+
+    @Autowired
+    private BrandMapper brandMapper;
 
     /**
      * 分页查询
@@ -55,6 +59,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
      */
     @Override
     public void updateDetail(Brand brand) {
-
+        // 更新品牌信息
+        brandMapper.updateById(brand);
     }
 }

@@ -6,10 +6,15 @@ import com.elon.hypesphere.common.validator.group.AddGroup;
 import com.elon.hypesphere.common.validator.group.UpdateGroup;
 import com.elon.hypesphere.product.entity.Brand;
 import com.elon.hypesphere.product.service.IBrandService;
+
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -52,18 +57,18 @@ public class BrandController {
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@Validated(AddGroup.class) @RequestBody Brand brand/*, BindingResult result*/){
-//        if (result.hasErrors()) {
+    public R save(@Validated(AddGroup.class) @RequestBody Brand brand /*,BindingResult bindingResult*/){
+//        if (bindingResult.hasErrors()) {
 //            Map<String, String> map = new HashMap<>();
-//            // 鑾峰彇鏍￠獙鐨勯敊璇粨鏋?
-//            result.getFieldErrors().forEach((item) -> {
-//                // 鑾峰彇鍒伴敊璇彁绀篎ieldError
+//            //1、获取校验的错误结果
+//            bindingResult.getFieldErrors().forEach((item) -> {
+//                // 2、获取到错误提示
 //                String message = item.getDefaultMessage();
-//                // 鑾峰彇閿欒鐨勫睘鎬у悕瀛?
+//                // 3、获取到错误属性的名称
 //                String field = item.getField();
 //                map.put(field, message);
 //            });
-//            return R.ok().error(400, "鎻愪氦鐨勬暟鎹笉鍚堟硶").put("data", map);
+//            return R.ok().error(500, "输入的信息不合法").put("data", map);
 //        }else {
 //            brandService.save(brand);
 //            return R.ok();
@@ -76,9 +81,23 @@ public class BrandController {
      * 修改
      */
     @RequestMapping("/update")
-    public R update(@Validated({UpdateGroup.class}) @RequestBody Brand brand){
+    public R update(@Validated(UpdateGroup.class) @RequestBody Brand brand /*,BindingResult bindingResult*/){
+//        if (bindingResult.hasErrors()) {
+//            Map<String, String> map = new HashMap<>();
+//            //1、获取校验的错误结果
+//            bindingResult.getFieldErrors().forEach((item) -> {
+//                // 2、获取到错误提示
+//                String message = item.getDefaultMessage();
+//                // 3、获取到错误属性的名称
+//                String field = item.getField();
+//                map.put(field, message);
+//            });
+//            return R.ok().error(500, "输入的信息不合法").put("data", map);
+//        }else {
+//            brandService.updateDetail(brand);
+//            return R.ok();
+//        }
         brandService.updateDetail(brand);
-
         return R.ok();
     }
 
@@ -91,16 +110,16 @@ public class BrandController {
 
         return R.ok();
     }
-//
-//    /**
-//     * 鍒犻櫎
-//     */
-//    @RequestMapping("/delete")
-//    public R delete(@RequestBody Long[] brandIds){
-//        brandService.removeByIds(Arrays.asList(brandIds));
-//
-//        return R.ok();
-//    }
+
+    /**
+     * 删除
+     */
+    @RequestMapping("/delete")
+    public R delete(@Validated @RequestBody Long[] brandIds){
+        brandService.removeByIds(Arrays.asList(brandIds));
+
+        return R.ok();
+    }
 
 
 }

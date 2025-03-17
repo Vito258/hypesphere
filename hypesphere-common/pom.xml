@@ -157,7 +157,7 @@
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.2.5.Final</version>
+            <version>8.0.1.Final</version>
         </dependency>
 
         <!--  httpcore  -->
@@ -206,12 +206,12 @@
             </exclusions>
         </dependency>
 
-<!--        &lt;!&ndash;   阿里云Oss服务   &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>com.aliyun.oss</groupId>-->
-<!--            <artifactId>aliyun-sdk-oss</artifactId>-->
-<!--            <version>3.17.4</version>-->
-<!--        </dependency>-->
+        <!--        &lt;!&ndash;   阿里云Oss服务   &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.aliyun.oss</groupId>-->
+        <!--            <artifactId>aliyun-sdk-oss</artifactId>-->
+        <!--            <version>3.17.4</version>-->
+        <!--        </dependency>-->
 
         <!--  aliyun 新版   -->
         <dependency>

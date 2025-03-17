@@ -7,9 +7,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {
-        "com.elon.hypesphere.common.config"  // 显式包含配置类所在包
-})
 @MapperScan("com.elon.hypesphere.product.mapper")
 @EnableDiscoveryClient
 public class HypesphereProductApplication {

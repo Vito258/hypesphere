@@ -20,10 +20,10 @@
                     <artifactId>spring-boot-starter-web</artifactId>
                 </exclusion>
 
-                <exclusion>
-                    <groupId>org.hibernate.validator</groupId>
-                    <artifactId>hibernate-validator</artifactId>
-                </exclusion>
+<!--                <exclusion>-->
+<!--                    <groupId>org.hibernate.validator</groupId>-->
+<!--                    <artifactId>hibernate-validator</artifactId>-->
+<!--                </exclusion>-->
             </exclusions>
         </dependency>
 
@@ -35,11 +35,11 @@
         </dependency>
 
         <!-- 显式添加 Hibernate Validator -->
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>8.0.1.Final</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.hibernate.validator</groupId>-->
+<!--            <artifactId>hibernate-validator</artifactId>-->
+<!--            <version>8.0.1.Final</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>

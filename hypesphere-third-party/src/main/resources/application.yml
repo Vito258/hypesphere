@@ -1,0 +1,53 @@
+# spring 相关配置
+spring:
+  application:
+    name: hypesphere-third-party
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        enabled: true
+        username: nacos
+        password: nacos
+      config:
+        file-extension: yaml  # 明确指定文件扩展名
+        server-addr: 127.0.0.1:8848
+        group: dev  # 指定配置集的分组
+        enabled: true
+        username: nacos
+        password: nacos
+        namespace: hypesphere-third-party
+        extension-configs:
+          - data-id: oss.yaml           # 数据ID（需包含文件扩展名）
+            group: dev                  # 分组，默认DEFAULT_GROUP
+            refresh: true               # 是否动态刷新（默认false）
+  config:
+    import: "optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}"   # 指定配置集Id
+
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 0     # 逻辑已删除值
+      logic-not-delete-value: 1 # 逻辑未删除值
+
+# 服务
+server:
+  port: 30000
+
+# 日志级别
+logging:
+  level:
+    root: info
+
+# 阿里云远程存储
+alibaba:
+  cloud:
+    access-key: ${OSS_ACCESS_KEY_ID}
+    secret-key: ${OSS_ACCESS_KEY_SECRET}
+    oss:
+      endpoint: oss-cn-qingdao.aliyuncs.com
+
+

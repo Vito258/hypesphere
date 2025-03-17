@@ -24,5 +24,6 @@
         <module>hypesphere-member</module>
         <module>hypesphere-common</module>
         <module>hypesphere-gateway</module>
+        <module>hypesphere-third-party</module>
     </modules>
 </project>
