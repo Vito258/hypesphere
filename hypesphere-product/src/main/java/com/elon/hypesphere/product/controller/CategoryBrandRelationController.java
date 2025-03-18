@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * @since 2025-03-10
  */
 @RestController
-@RequestMapping("/category-brand-relation")
+@RequestMapping("/categorybrandrelation")
 public class CategoryBrandRelationController {
     @Autowired
     private ICategoryBrandRelationService categoryBrandRelationService;
@@ -85,7 +85,7 @@ public class CategoryBrandRelationController {
      */
     @RequestMapping("/save")
     public R save(@RequestBody CategoryBrandRelation categoryBrandRelation){
-        categoryBrandRelationService.save(categoryBrandRelation);
+        categoryBrandRelationService.saveDetail(categoryBrandRelation);
 
         return R.ok();
     }

@@ -18,4 +18,10 @@ public interface ICategoryService extends IService<Category> {
     List<Category> listWithTree();
 
     void removeMenuByIds(List<Long> asList);
+
+    // 查询三级分类
+    Long[] findCatelogPath(Long catelogId);
+
+    // 更新三级分类
+    void updateDetail(Category category);
 }

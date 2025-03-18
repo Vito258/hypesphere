@@ -58,7 +58,7 @@ public class CategoryController {
      */
     @RequestMapping("/update")
     public R update(@RequestBody Category category){
-        categoryService.updateById(category);
+        categoryService.updateDetail(category);
         return R.ok();
     }
 

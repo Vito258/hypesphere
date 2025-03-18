@@ -13,4 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ICategoryBrandRelationService extends IService<CategoryBrandRelation> {
 
+    // 保存关联关系
+    void saveDetail(CategoryBrandRelation categoryBrandRelation);
 }

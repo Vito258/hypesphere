@@ -1,6 +1,7 @@
 package com.elon.hypesphere.product.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -94,5 +95,6 @@ public class Category implements Serializable {
      * 子分类
      */
     @TableField(exist = false)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)   // 如果children为空，则不返回给前端
     private List<Category> children;
 }

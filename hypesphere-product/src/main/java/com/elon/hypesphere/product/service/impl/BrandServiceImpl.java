@@ -8,6 +8,7 @@ import com.elon.hypesphere.product.entity.Brand;
 import com.elon.hypesphere.product.mapper.BrandMapper;
 import com.elon.hypesphere.product.service.IBrandService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.elon.hypesphere.product.service.ICategoryBrandRelationService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,10 +29,14 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
     @Autowired
     private BrandMapper brandMapper;
 
+    @Autowired
+    private ICategoryBrandRelationService categoryBrandRelationService;
+
     /**
      * 分页查询
      *
      * @param params
+     * sql select * from pms_brand where brand_id = ? or name like ?
      * @return
      */
     @Override
@@ -41,7 +46,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
         String key = (String) params.get("key");
         QueryWrapper<Brand> queryWrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(key)) {
-            // 鍏抽敭瀛楅潪绌猴紝鎷兼帴鍏抽敭瀛楁煡璇㈡潯浠?
+            // 根据key多字段模糊查询
             queryWrapper.eq("brand_id", key).or().like("name", key);
         }
         IPage<Brand> page = this.page(
@@ -53,13 +58,22 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
     }
 
     /**
-     * 更新品牌信息
-     *
+     * 更新品牌信息详情
      * @param brand
      */
     @Override
     public void updateDetail(Brand brand) {
-        // 更新品牌信息
+        // 保证冗余字段的数据一致
+        // 1、更新品牌信息
         brandMapper.updateById(brand);
+
+        // 2、更新关联表中的信息
+        if(!StringUtils.isEmpty(brand.getName())){
+            // 1、根据品牌id修改品牌分类关联表中品牌名称
+            categoryBrandRelationService.update().eq("brand_id", brand.getBrandId())
+                    .set("brand_name", brand.getName())
+                    .update(); // 必须调用此方法提交更新;
+            // TODO 2、修改其他关联表中品牌名称
+        }
     }
 }

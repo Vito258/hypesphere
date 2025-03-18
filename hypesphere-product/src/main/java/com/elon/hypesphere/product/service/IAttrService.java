@@ -1,7 +1,10 @@
 package com.elon.hypesphere.product.service;
 
+import com.elon.hypesphere.common.utils.PageUtils;
 import com.elon.hypesphere.product.entity.Attr;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +16,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IAttrService extends IService<Attr> {
 
+    // 分页查询
+    PageUtils queryPage(Map<String, Object> params);
 }

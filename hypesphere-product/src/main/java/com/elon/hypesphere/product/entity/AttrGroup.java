@@ -68,4 +68,10 @@ public class AttrGroup implements Serializable {
     @TableField("catelog_id")
     @ApiModelProperty("所属分类id")
     private Long catelogId;
+
+    /**
+     * 所属分类完整路径
+     */
+    @TableField(exist = false)
+    private Long[] catelogPath;
 }

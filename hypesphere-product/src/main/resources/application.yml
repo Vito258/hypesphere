@@ -46,3 +46,8 @@ alibaba:
     oss:
       endpoint: oss-cn-qingdao.aliyuncs.com
 
+# 日志级别
+logging:
+  level:
+    com.elon.hypesphere: debug
+
