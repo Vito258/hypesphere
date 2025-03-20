@@ -166,6 +166,18 @@
             <artifactId>httpcore</artifactId>
         </dependency>
 
+        <!--  导入MapStruct   -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.5.2.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.5.2.Final</version>
+        </dependency>
+
         <!-- Nacos 配置中心 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

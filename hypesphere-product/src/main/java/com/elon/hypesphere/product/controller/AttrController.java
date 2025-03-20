@@ -2,15 +2,14 @@ package com.elon.hypesphere.product.controller;
 
 import com.elon.hypesphere.common.utils.PageUtils;
 import com.elon.hypesphere.common.utils.R;
-import com.elon.hypesphere.product.entity.ProductAttrValue;
 import com.elon.hypesphere.product.service.IAttrService;
-import com.elon.hypesphere.product.service.IProductAttrValueService;
-import lombok.experimental.Accessors;
+import com.elon.hypesphere.product.vo.AttrGroupRelationVo;
+import com.elon.hypesphere.product.vo.AttrRespVo;
+import com.elon.hypesphere.product.vo.AttrVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,9 +26,6 @@ public class AttrController {
     @Autowired
     private IAttrService attrService;
 
-    @Autowired
-    private IProductAttrValueService productAttrValueService;
-
     /**
      * 列表
      */
@@ -40,36 +36,47 @@ public class AttrController {
         return R.ok().put("page", page);
     }
 
+    /**
+     * 根据分类ID查询基本属性
+     */
+    @GetMapping("/{attrType}/list/{catelogId}")
+    public R baseAttrList(@RequestParam() Map<String, Object> params,
+                          @PathVariable("catelogId") Long catelogId,
+                          @PathVariable("attrType") String type) {
+        PageUtils page = attrService.queryBaseAttrPage(params, catelogId, type);
+
+        return R.ok().put("page", page);
+    }
 
     /**
      * 信息
      */
-//    @RequestMapping("/info/{attrId}")
-//    public R info(@PathVariable("attrId") Long attrId){
-//        AttrRespVO respVo = attrService.getAttrInfo(attrId);
-//
-//        return R.ok().put("attr", respVo);
-//    }
+    @RequestMapping("/info/{attrId}")
+    public R info(@PathVariable("attrId") Long attrId){
+        AttrRespVo respVo = attrService.getAttrInfo(attrId);
+
+        return R.ok().put("attr", respVo);
+    }
 
     /**
      * 保存
      */
-//    @RequestMapping("/save")
-//    public R save(@RequestBody AttrVO attr){
-//        attrService.save(attr);
-//
-//        return R.ok();
-//    }
+    @RequestMapping("/save")
+    public R save(@RequestBody AttrVo attr){
+        attrService.saveAttr(attr);
+
+        return R.ok();
+    }
 
     /**
      * 修改
      */
-//    @RequestMapping("/update")
-//    public R update(@RequestBody AttrVO attr){
-//        attrService.updateAttr(attr);
-//
-//        return R.ok();
-//    }
+    @RequestMapping("/update")
+    public R update(@RequestBody AttrVo attr){
+        attrService.updateAttr(attr);
+
+        return R.ok();
+    }
 
     /**
      * 修改商品规格

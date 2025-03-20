@@ -2,6 +2,9 @@ package com.elon.hypesphere.product.service;
 
 import com.elon.hypesphere.product.entity.AttrAttrgroupRelation;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.elon.hypesphere.product.vo.AttrGroupRelationVo;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IAttrAttrgroupRelationService extends IService<AttrAttrgroupRelation> {
 
+    // 保存关联关系
+    void saveRelationByVos(List<AttrGroupRelationVo> vos);
 }

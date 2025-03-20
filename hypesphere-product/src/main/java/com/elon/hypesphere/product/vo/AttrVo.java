@@ -1,30 +1,15 @@
-package com.elon.hypesphere.product.entity;
+package com.elon.hypesphere.product.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.io.Serializable;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-/**
- * <p>
- * 商品属性
- * </p>
- *
- * @author elon
- * @since 2025-03-10
- */
-@Getter
-@Setter
-@ToString
-@TableName("pms_attr")
-@ApiModel(value = "Attr对象", description = "商品属性")
-public class Attr implements Serializable {
+import lombok.Data;
 
+import java.io.Serializable;
+
+@Data
+public class AttrVo {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -98,8 +83,8 @@ public class Attr implements Serializable {
     private Byte showDesc;
 
     /**
-     * 属性组内排序
+     * 属性分组ID
      */
-//    @TableField(exist = false)
-//    private Long attrGroupId;
+    @TableField(exist = false)
+    private Long attrGroupId;
 }

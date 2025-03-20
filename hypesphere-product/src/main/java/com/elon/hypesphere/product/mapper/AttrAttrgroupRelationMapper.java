@@ -2,6 +2,10 @@ package com.elon.hypesphere.product.mapper;
 
 import com.elon.hypesphere.product.entity.AttrAttrgroupRelation;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Collection;
+import java.util.List;
 
 
 /**
@@ -14,5 +18,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface AttrAttrgroupRelationMapper extends BaseMapper<AttrAttrgroupRelation> {
 
+    List<Long> selectIdsByAttrGroupIdAndAttrId(
+            @Param("attrGroupId") Long attrGroupId,
+            @Param("attrId") Long attrId
+    );
 }
 

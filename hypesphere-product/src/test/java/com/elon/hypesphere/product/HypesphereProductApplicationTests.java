@@ -1,24 +1,20 @@
 package com.elon.hypesphere.product;
 
 
-import com.aliyun.oss.*;
-import com.aliyun.oss.model.PutObjectRequest;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+//import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Types;
 import java.util.Collections;
-import java.io.File;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)  // JUnit 4 需要此注解
+//@RunWith(SpringRunner.class)  // JUnit 4 需要此注解
 public class HypesphereProductApplicationTests {
     @Test
     public void contextLoads() {
