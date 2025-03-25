@@ -1,9 +1,6 @@
 package com.elon.hypesphere.product.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
@@ -74,9 +71,9 @@ public class SpuInfo implements Serializable {
     @ApiModelProperty("上架状态[0 - 新建，1 - 上架，2 - 下架]")
     private Byte publishStatus;
 
-    @TableField("create_time")
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-    @TableField("update_time")
+    @TableField(value ="update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 }

@@ -1,7 +1,9 @@
 package com.elon.hypesphere.product.mapper;
 import com.elon.hypesphere.product.entity.Attr;
 import com.elon.hypesphere.product.entity.AttrAttrgroupRelation;
+import com.elon.hypesphere.product.entity.AttrGroup;
 import com.elon.hypesphere.product.vo.AttrGroupRelationVo;
+import com.elon.hypesphere.product.vo.AttrGroupWithAttrsVo;
 import com.elon.hypesphere.product.vo.AttrRespVo;
 import com.elon.hypesphere.product.vo.AttrVo;
 import org.mapstruct.Mapper;
@@ -22,4 +24,6 @@ public interface AttrConvertMapper {
     Attr attrRespVoToAttr(AttrRespVo attrRespVo);
 
     AttrAttrgroupRelation attrGroupRelationVoToAttrAttrgroupRelation(AttrGroupRelationVo attrGroupRelationVo);
+
+    AttrGroupWithAttrsVo attrGroupToAttrGroupWithAttrsVo(AttrGroup attrGroup);
 }

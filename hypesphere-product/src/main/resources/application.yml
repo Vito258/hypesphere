@@ -24,6 +24,11 @@ spring:
         namespace: hypesphere-product
   config:
     import: "optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}"   # 指定配置集Id
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai  # 或 GMT+8
+    serialization:
+      write-dates-as-timestamps: false  # 禁用时间戳格式
 
 # mybatis-plus
 mybatis-plus:
@@ -50,4 +55,5 @@ alibaba:
 logging:
   level:
     com.elon.hypesphere: debug
+
 

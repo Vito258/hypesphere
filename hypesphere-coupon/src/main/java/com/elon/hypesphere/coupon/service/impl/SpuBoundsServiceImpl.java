@@ -1,5 +1,6 @@
 package com.elon.hypesphere.coupon.service.impl;
 
+import com.elon.hypesphere.common.to.SpuBoundsTo;
 import com.elon.hypesphere.coupon.entity.SpuBounds;
 import com.elon.hypesphere.coupon.mapper.SpuBoundsMapper;
 import com.elon.hypesphere.coupon.service.ISpuBoundsService;

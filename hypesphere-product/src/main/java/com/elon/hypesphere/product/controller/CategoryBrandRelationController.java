@@ -6,6 +6,7 @@ import com.elon.hypesphere.common.utils.R;
 import com.elon.hypesphere.product.entity.Brand;
 import com.elon.hypesphere.product.entity.CategoryBrandRelation;
 import com.elon.hypesphere.product.service.ICategoryBrandRelationService;
+import com.elon.hypesphere.product.vo.BrandVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,18 +56,18 @@ public class CategoryBrandRelationController {
      * 2、service接收controller传来的数据，进行业务处理
      * 3、controller接收service处理完的数据，封装页面指定的vo
      */
-//    @GetMapping("/brands/list")
-//    public R relationBrandList(@RequestParam(value = "catId", required = true) Long catId){
-//        List<Brand> brandEntities = categoryBrandRelationService.getBrandsByCatId(catId);
-//        List<BrandVO> data = brandEntities.stream().map(item -> {
-//            BrandVO brandVo = new BrandVO();
-//            brandVo.setBrandId(item.getBrandId());
-//            brandVo.setBrandName(item.getName());
-//            return brandVo;
-//        }).collect(Collectors.toList());
-//
-//        return R.ok().put("data", data);
-//    }
+    @GetMapping("/brands/list")
+    public R relationBrandList(@RequestParam(value = "catId", required = true) Long catId){
+        List<Brand> brandEntities = categoryBrandRelationService.getBrandsByCatId(catId);
+        List<BrandVo> data = brandEntities.stream().map(item -> {
+            BrandVo brandVo = new BrandVo();
+            brandVo.setBrandId(item.getBrandId());
+            brandVo.setBrandName(item.getName());
+            return brandVo;
+        }).collect(Collectors.toList());
+
+        return R.ok().put("data", data);
+    }
 
 
 

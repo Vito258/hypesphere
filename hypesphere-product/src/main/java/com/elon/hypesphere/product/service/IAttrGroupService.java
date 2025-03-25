@@ -3,7 +3,9 @@ package com.elon.hypesphere.product.service;
 import com.elon.hypesphere.common.utils.PageUtils;
 import com.elon.hypesphere.product.entity.AttrGroup;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.elon.hypesphere.product.vo.AttrGroupWithAttrsVo;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,4 +23,7 @@ public interface IAttrGroupService extends IService<AttrGroup> {
 
     // 根据分类id查询属性分组
     PageUtils queryPage(Map<String, Object> params, Long catelogId);
+
+    // 根据分类id查询属性分组及关联的属性
+    List<AttrGroupWithAttrsVo> getAttrGroupWithAttrsByCatelogId(Long catlogId);
 }

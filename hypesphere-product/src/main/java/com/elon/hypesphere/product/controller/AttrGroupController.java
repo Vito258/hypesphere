@@ -11,6 +11,7 @@ import com.elon.hypesphere.product.service.IAttrGroupService;
 import com.elon.hypesphere.product.service.IAttrService;
 import com.elon.hypesphere.product.service.ICategoryService;
 import com.elon.hypesphere.product.vo.AttrGroupRelationVo;
+import com.elon.hypesphere.product.vo.AttrGroupWithAttrsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -118,6 +119,17 @@ public class AttrGroupController {
     public R  deleteRelation(@RequestBody AttrGroupRelationVo[] attrGroupRelationVos){
         attrService.deleteRelation(attrGroupRelationVos);
         return R.ok();
+    }
+
+    /**
+     * 获取所有分类下的所有分组&相关属性
+     */
+    @RequestMapping("/{catlogId}/withattr")
+    public R getAttrGroupWithAttrs(@PathVariable("catlogId") Long catlogId) {
+        // 查出当前分类下的所有属性分组并查出每个属性分组的所有属性
+        List<AttrGroupWithAttrsVo> attrGroups = attrGroupService.getAttrGroupWithAttrsByCatelogId(catlogId);
+
+        return R.ok().put("data", attrGroups);
     }
 
 }

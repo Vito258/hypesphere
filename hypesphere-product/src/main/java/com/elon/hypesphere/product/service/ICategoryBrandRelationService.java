@@ -1,7 +1,10 @@
 package com.elon.hypesphere.product.service;
 
+import com.elon.hypesphere.product.entity.Brand;
 import com.elon.hypesphere.product.entity.CategoryBrandRelation;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,4 +18,7 @@ public interface ICategoryBrandRelationService extends IService<CategoryBrandRel
 
     // 保存关联关系
     void saveDetail(CategoryBrandRelation categoryBrandRelation);
+
+    // 根据分类id查询品牌信息
+    List<Brand> getBrandsByCatId(Long catId);
 }
