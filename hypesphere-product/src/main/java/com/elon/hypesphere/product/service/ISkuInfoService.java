@@ -1,7 +1,10 @@
 package com.elon.hypesphere.product.service;
 
+import com.elon.hypesphere.common.utils.PageUtils;
 import com.elon.hypesphere.product.entity.SkuInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +16,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ISkuInfoService extends IService<SkuInfo> {
 
+    // 分页查询
+    PageUtils queryPageByCondition(Map<String, Object> params);
 }

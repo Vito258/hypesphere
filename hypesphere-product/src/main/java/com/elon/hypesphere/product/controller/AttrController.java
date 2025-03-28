@@ -2,7 +2,9 @@ package com.elon.hypesphere.product.controller;
 
 import com.elon.hypesphere.common.utils.PageUtils;
 import com.elon.hypesphere.common.utils.R;
+import com.elon.hypesphere.product.entity.ProductAttrValue;
 import com.elon.hypesphere.product.service.IAttrService;
+import com.elon.hypesphere.product.service.IProductAttrValueService;
 import com.elon.hypesphere.product.vo.AttrGroupRelationVo;
 import com.elon.hypesphere.product.vo.AttrRespVo;
 import com.elon.hypesphere.product.vo.AttrVo;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,6 +28,9 @@ import java.util.Map;
 public class AttrController {
     @Autowired
     private IAttrService attrService;
+
+    @Autowired
+    private IProductAttrValueService productAttrValueService;
 
     /**
      * 列表
@@ -79,14 +85,24 @@ public class AttrController {
     }
 
     /**
+     * 获取spu规格，前端回显商品规格参数值
+     */
+    @RequestMapping("/base/listforspu/{spuId}")
+    public R baseAttrlistforspu(@PathVariable("spuId") Long spuId){
+        List<ProductAttrValue> entities = productAttrValueService.baseAttrlistforspu(spuId);
+
+        return R.ok().put("data", entities);
+    }
+
+    /**
      * 修改商品规格
      */
-//    @PostMapping("/update/{spuId}")
-//    public R updateSpuAttr(@PathVariable("spuId") Long spuId, @RequestBody List<ProductAttrValue> entities){
-//        productAttrValueService.updateSpuAttr(spuId, entities);
-//
-//        return R.ok();
-//    }
+    @PostMapping("/update/{spuId}")
+    public R updateSpuAttr(@PathVariable("spuId") Long spuId, @RequestBody List<ProductAttrValue> entities){
+        productAttrValueService.updateSpuAttr(spuId, entities);
+
+        return R.ok();
+    }
 
     /**
      * 删除

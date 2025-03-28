@@ -1,7 +1,10 @@
 package com.elon.hypesphere.ware.service;
 
+import com.elon.hypesphere.common.utils.PageUtils;
 import com.elon.hypesphere.ware.entity.PurchaseDetail;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IPurchaseDetailService extends IService<PurchaseDetail> {
 
+    PageUtils queryPage(Map<String, Object> params);
 }
