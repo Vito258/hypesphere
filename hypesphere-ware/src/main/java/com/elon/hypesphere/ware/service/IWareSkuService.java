@@ -1,9 +1,11 @@
 package com.elon.hypesphere.ware.service;
 
+import com.elon.hypesphere.common.to.SkuHasStockTo;
 import com.elon.hypesphere.common.utils.PageUtils;
 import com.elon.hypesphere.ware.entity.WareSku;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,4 +23,7 @@ public interface IWareSkuService extends IService<WareSku> {
 
     // 保存库存
     void addStock(Long skuId, Long wareId, Integer skuNum);
+
+    // 查询sku是否有库存
+    List<SkuHasStockTo> getSkusHasStock(List<Long> skuIds);
 }

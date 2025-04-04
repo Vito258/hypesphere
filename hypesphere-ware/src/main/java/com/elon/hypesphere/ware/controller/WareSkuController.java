@@ -1,5 +1,6 @@
 package com.elon.hypesphere.ware.controller;
 
+import com.elon.hypesphere.common.to.SkuHasStockTo;
 import com.elon.hypesphere.common.utils.PageUtils;
 import com.elon.hypesphere.common.utils.R;
 import com.elon.hypesphere.ware.entity.WareSku;
@@ -49,13 +50,13 @@ public class WareSkuController {
     /**
      * 批量查询sku是否有库存
      */
-//    @PostMapping("/hasstock")
-//    public R getSkusHasStock(@RequestBody List<Long> skuIds) {
-//        // skuId, stock
-//        List<SkuHasStockTO> result = wareSkuService.getSkusHasStock(skuIds);
-//
-//        return R.ok().setData(result);
-//    }
+    @PostMapping("/hasstock")
+    public R getSkusHasStock(@RequestBody List<Long> skuIds) {
+        // skuId, stock
+        List<SkuHasStockTo> Vos = wareSkuService.getSkusHasStock(skuIds);
+
+        return R.ok().setData(Vos);
+    }
 
     /**
      * 保存

@@ -46,3 +46,8 @@ mybatis-plus:
 # 服务
 server:
   port: 8085
+
+# 日志级别
+logging:
+  level:
+    com.elon.hypesphere: debug

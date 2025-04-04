@@ -290,4 +290,16 @@ public class AttrServiceImpl extends ServiceImpl<AttrMapper, Attr> implements IA
         PageUtils pageUtils = new PageUtils(page);
         return pageUtils;
     }
+
+    /**
+     * 根据属性id获取可以检索的属性
+     * @param attrIds
+     * @return
+     */
+    @Override
+    public List<Long> selectSearchAttrs(List<Long> attrIds) {
+        QueryWrapper<Attr> wrapper = new QueryWrapper<Attr>().in("attr_id", attrIds).eq("search_type", 1);
+        List<Attr> attrs = this.list(wrapper);
+        return attrs.stream().map(Attr::getAttrId).toList();
+    }
 }

@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: hypesphere-search
+  elasticsearch:
+    uris: https://192.168.56.10:9200
+    username: "elastic"
+    password: "your-password"
+    ssl:
+      certificate-authorities: classpath:http_ca.crt # ????
+      verification-mode: full # ??????
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        enabled: true
+        username: nacos
+        password: nacos
+      config:
+        file-extension: yaml  # ?????????
+        server-addr: 127.0.0.1:8848
+        group: dev  # ????????
+        enabled: true
+        username: nacos
+        password: nacos
+        namespace: hypesphere-search
+  config:
+    import: "optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}"   # ?????Id
+
+# 服务
+server:
+  port: 12000

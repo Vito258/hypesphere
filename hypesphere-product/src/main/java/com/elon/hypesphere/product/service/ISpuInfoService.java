@@ -22,4 +22,7 @@ public interface ISpuInfoService extends IService<SpuInfo> {
 
     // 分页查询spu信息
     PageUtils queryPageByCondition(Map<String, Object> params);
+
+    // 商品上架
+    void up(Long spuId);
 }

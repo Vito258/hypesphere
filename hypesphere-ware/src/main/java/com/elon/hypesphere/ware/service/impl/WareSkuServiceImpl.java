@@ -3,6 +3,7 @@ package com.elon.hypesphere.ware.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.elon.hypesphere.common.to.SkuHasStockTo;
 import com.elon.hypesphere.common.utils.PageUtils;
 import com.elon.hypesphere.common.utils.Query;
 import com.elon.hypesphere.common.utils.R;
@@ -15,6 +16,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -91,5 +93,38 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuMapper, WareSku> impl
 
             this.update(updateWrapper);
         }
+    }
+
+    /**
+     * 查询skuId对应的库存信息
+     * @param skuIds
+     * @return
+     */
+    @Override
+    public List<SkuHasStockTo> getSkusHasStock(List<Long> skuIds) {
+        return skuIds.stream().map(skuId -> {
+            SkuHasStockTo skuHasStockTo = new SkuHasStockTo();
+            skuHasStockTo.setSkuId(skuId);
+            skuHasStockTo.setHasStock(getAvailableStockBySkuId(skuId) > 0);
+            return skuHasStockTo;
+        }).toList();
+    }
+
+    /**
+     * 根据skuId查询库存
+     * @param skuId
+     * @return
+     */
+    public Integer getAvailableStockBySkuId(Long skuId) {
+        QueryWrapper<WareSku> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("sku_id", skuId)
+                .select("sum(stock - stock_locked) as available_stock");
+
+        List<Map<String, Object>> result = baseMapper.selectMaps(queryWrapper);
+        Map<String, Object> map = result.getFirst();
+        if (map != null && !map.isEmpty()) {
+            return (Integer) map.get("available_stock");
+        }
+        return 0;
     }
 }

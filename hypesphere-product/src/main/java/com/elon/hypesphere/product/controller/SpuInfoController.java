@@ -5,10 +5,7 @@ import com.elon.hypesphere.common.utils.R;
 import com.elon.hypesphere.product.service.ISpuInfoService;
 import com.elon.hypesphere.product.vo.SpuSaveVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -44,6 +41,16 @@ public class SpuInfoController {
     @RequestMapping("/save")
     public R spuInfoSave(@RequestBody SpuSaveVo spuSaveVo){
         spuInfoService.saveSpuInfo(spuSaveVo);
+        return R.ok();
+    }
+
+    /**
+     * spu商品上架
+     */
+    @PostMapping("/{spuId}/up")
+    public R spuUp(@PathVariable("spuId") Long spuId){
+        spuInfoService.up(spuId);
+
         return R.ok();
     }
 

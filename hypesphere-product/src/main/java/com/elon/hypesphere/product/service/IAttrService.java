@@ -43,4 +43,7 @@ public interface IAttrService extends IService<Attr> {
 
     // 获取当前分组所有未关联的属性
     PageUtils getNoRelationAttr(Map<String, Object> params, Long attrgroupId);
+
+    // 查询可以检索的属性
+    List<Long> selectSearchAttrs(List<Long> attrIds);
 }

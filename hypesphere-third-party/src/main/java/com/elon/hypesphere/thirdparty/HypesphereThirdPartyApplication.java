@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @EnableDiscoveryClient
 @ComponentScan(basePackages = {
-		"com.elon.hypesphere.common.config",  // 显式包含配置类所在包
+		"com.elon.hypesphere.thirdparty.config",
 		"com.elon.hypesphere.thirdparty.controller" // 显式包含控制器所在包
 })
 @SpringBootApplication
