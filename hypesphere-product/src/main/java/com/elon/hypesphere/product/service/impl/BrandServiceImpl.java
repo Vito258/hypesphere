@@ -13,6 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,8 +36,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
     /**
      * 分页查询
      *
-     * @param params
-     * sql select * from pms_brand where brand_id = ? or name like ?
+     * @param params sql select * from pms_brand where brand_id = ? or name like ?
      * @return
      */
     @Override
@@ -59,6 +59,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
 
     /**
      * 更新品牌信息详情
+     *
      * @param brand
      */
     @Override
@@ -68,12 +69,23 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
         brandMapper.updateById(brand);
 
         // 2、更新关联表中的信息
-        if(!StringUtils.isEmpty(brand.getName())){
+        if (!StringUtils.isEmpty(brand.getName())) {
             // 1、根据品牌id修改品牌分类关联表中品牌名称
             categoryBrandRelationService.update().eq("brand_id", brand.getBrandId())
                     .set("brand_name", brand.getName())
                     .update(); // 必须调用此方法提交更新;
             // TODO 2、修改其他关联表中品牌名称
         }
+    }
+
+    /**
+     * 根据品牌id集合查询品牌信息
+     *
+     * @param brandIds
+     * @return
+     */
+    @Override
+    public List<Brand> getBrandByIds(List<Long> brandIds) {
+        return baseMapper.selectList(new QueryWrapper<Brand>().in("brand_id", brandIds));
     }
 }

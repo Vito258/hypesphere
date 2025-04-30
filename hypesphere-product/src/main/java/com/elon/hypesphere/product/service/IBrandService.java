@@ -4,6 +4,7 @@ import com.elon.hypesphere.common.utils.PageUtils;
 import com.elon.hypesphere.product.entity.Brand;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,4 +22,6 @@ public interface IBrandService extends IService<Brand> {
 
     // 更新品牌详情
     void updateDetail(Brand brand);
+
+    List<Brand> getBrandByIds(List<Long> brandIds);
 }

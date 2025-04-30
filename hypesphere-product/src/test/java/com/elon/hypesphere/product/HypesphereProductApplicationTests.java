@@ -7,14 +7,21 @@ import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.test.context.junit4.SpringRunner;
 //import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Types;
 import java.util.Collections;
+import java.util.UUID;
 
 @SpringBootTest
-//@RunWith(SpringRunner.class)  // JUnit 4 需要此注解
+@RunWith(SpringRunner.class)  // JUnit 4 需要此注解
 public class HypesphereProductApplicationTests {
     @Test
     public void contextLoads() {
@@ -127,5 +134,37 @@ public class HypesphereProductApplicationTests {
 //        // download file to local
 //        oss.putObject(putObjectRequest);
 //    }
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+    // Redis 测试
+    @Test
+    public void RedisTest() {
+        ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+
+        // 添加
+        operations.set("hello", "world_" + UUID.randomUUID().toString());
+
+        // 查询
+        String hello = operations.get("hello");
+        System.out.println("之前保存的数据是：" + hello);
+
+        // 修改
+        operations.set("hello", "world_" + UUID.randomUUID().toString());
+        System.out.println("修改后数据是：" + operations.get("hello"));
+
+        // 删除
+        stringRedisTemplate.delete("hello");
+    }
+
+    @Autowired
+    private RedissonClient redissonClient;
+
+    // 测试RedissonClient 实例
+    @Test
+    public void RedissonTest() {
+        System.out.println(redissonClient);
+    }
 
 }

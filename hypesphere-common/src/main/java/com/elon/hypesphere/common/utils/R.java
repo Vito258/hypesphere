@@ -10,8 +10,6 @@ package com.elon.hypesphere.common.utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.json.Json;
-import jakarta.json.JsonValue;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
@@ -35,7 +33,13 @@ public class R extends HashMap<String, Object> {
 		ObjectMapper mapper = new ObjectMapper();
 		return mapper.convertValue(data, mapper.getTypeFactory().constructType(typeReference.getType()));
 	}
-	
+
+	public <T> T getData(String key,TypeReference<T> typeReference) {
+		Object data = this.get(key);
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.convertValue(data, mapper.getTypeFactory().constructType(typeReference.getType()));
+	}
+
 	public R() {
 		put("code", 0);
 		put("msg", "success");

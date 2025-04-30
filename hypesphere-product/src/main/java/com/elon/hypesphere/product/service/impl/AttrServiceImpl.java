@@ -19,6 +19,7 @@ import com.elon.hypesphere.product.vo.AttrRespVo;
 import com.elon.hypesphere.product.vo.AttrVo;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -173,6 +174,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrMapper, Attr> implements IA
      * @param attrId
      * @return
      */
+    @Cacheable(value = "attr", key = "'attrInfo:'+#root.args[0]")
     @Override
     public AttrRespVo getAttrInfo(Long attrId) {
         // 1. 查询基本数据

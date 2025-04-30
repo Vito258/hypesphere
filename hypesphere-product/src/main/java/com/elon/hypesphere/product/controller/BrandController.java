@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,6 +53,13 @@ public class BrandController {
 
         return R.ok().put("brand", brand);
     }
+
+    @RequestMapping("/infos")
+    public R infos(@RequestParam("brandIds") List<Long> brandIds){
+        List<Brand> brandByIds = brandService.getBrandByIds(brandIds);
+        return R.ok().put("brands", brandByIds);
+    }
+
 
     /**
      * 保存

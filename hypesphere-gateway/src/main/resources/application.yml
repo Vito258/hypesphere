@@ -18,6 +18,12 @@ spring:
         namespace: hypesphere-gateway
   config:
     import: "optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}"   # ?????Id
+
+  # Redis
+  data:
+    redis:
+      host: 192.168.56.10
+      port: 6379
 logging:
   level:
     com.alibaba.nacos.client.config: DEBUG

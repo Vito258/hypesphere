@@ -151,4 +151,6 @@ public class HypesphereSearchApplicationTests {
 			log.info("Found product " + product.getId() + ", score " + hit.score());
 		}
 	}
+
+	// 测试search
 }
